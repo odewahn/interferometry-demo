@@ -2,6 +2,22 @@
 <head>
   <title>Introduction to Interferometry and Synthesis Imaging</title>
 
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='html.css' rel='stylesheet' type='text/css'>
+
+  <!-- JavaScript -->
+  <!-- CSS is loaded before JavaScript in order to improve user experience -->
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript"
+          src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
+
+
   <link rel="stylesheet" href="thebe.css" type="text/css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://rawgit.com/oreillymedia/thebe/master/static/main-built.js" type="text/javascript" charset="utf-8"></script>
@@ -11,13 +27,17 @@
 
 <body>
 
+<section id="content">
+
+<section id="content-body">
+
+
+<h1 id="introduction-to-interferometry-and-synthesis-imaging">Introduction to Interferometry and Synthesis Imaging</h1>
+
+<p>Before you can use the interactive examples, you ned to load a few modules and set up the environment.  So, click the "Run" button.</p>
 
 <pre data-code-language="python" data-executable="true">
 %matplotlib inline
-</pre>
-
-
-<pre data-code-language="python" data-executable="true">
 from IPython.display import Image
 from IPython.html.widgets import interact
 from numpy import pi, cos, sin
@@ -25,7 +45,6 @@ import numpy as np
 import pylab as plt
 </pre>
 
-<h2 id="introduction-to-interferometry-and-synthesis-imaging">Introduction to Interferometry and Synthesis Imaging</h2>
 <p>A radio interferometer computes pair-wise correlations between antennas.</p>
 <p><em>Text to explain interferometer in more detail here. The notebook is designed to support the textbook, so will refer extensively to it.</em></p>
 
@@ -34,7 +53,7 @@ import pylab as plt
 
 <p><strong>Fig 1:</strong> Geometry of an elementary three-element interfometer. Three antennas (elements) are arranged in a line with a spacing $b$ between them. The correlator computes a moving average of all pairwise products of voltages from antenna elements.</p>
 
-<h4 id="fringe-frequency">Fringe frequency</h4>
+<h2 id="fringe-frequency">Fringe frequency</h2>
 
 <p>Consider the simple interferometer shown in Fig. 1, and its response to a single, very distant point source of radiation.</p>
 
@@ -73,7 +92,7 @@ interact(plot_fringe, bl_length=(1, 100), wavelength=(1, 100))
 
 <p>...</p>
 
-<h3 id="correlator-computations">Correlator computations</h3>
+<h2 id="correlator-computations">Correlator computations</h2>
 
 <p>Pairwise correlation of all antennas is an $O(N^2)$ operation, meaning that as the number of antennas $N$ increases, the number of computations required increases in proportion to $N^2$.</p>
 
@@ -111,6 +130,9 @@ $(function(){
 	});
 });
 </script>
+
+</section>
+</section>
 
 
  </body>
