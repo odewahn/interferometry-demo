@@ -69,6 +69,11 @@ time $\tau_{g}=(2b/c)sin\theta$ before it reaches the left-hand one. $\tau_g$ is
 <p>As the point source transits across the sky, the value of $\theta$ changes and the fringe function will respond accordingly:</p>
 
 <pre data-code-language="python" data-executable="true">
+
+# Seaborn picks nice defaults for the colors and styles	
+import seaborn as sns
+sns.set()
+	
 def plot_fringe(bl_length, wavelength):
     """ Plot the fringe function for a baseline """
     theta = np.linspace(-np.pi, np.pi, 201)
@@ -83,7 +88,7 @@ def plot_fringe(bl_length, wavelength):
     plt.ylim(-2, 2)
     plt.legend()
 
-interact(plot_fringe, bl_length=(1, 100), wavelength=(1, 100))
+p = interact(plot_fringe, bl_length=(1, 100), wavelength=(1, 100))
 </pre>
 
 <p>We see that as baseline increases, the fringe function oscillates more rapidly.</p>
