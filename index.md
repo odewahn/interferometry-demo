@@ -1,4 +1,4 @@
-# RUN ME FIRST!
+# RUN ME FIRST, please!
 
 These are some standard libraries you need to import before any of these code examples will work:
 
@@ -32,7 +32,7 @@ A radio interferometer computes pair-wise correlations between antennas. For an 
 
 To give a simple example, imagine an array of three simple isotropic antennas (i.e. uniform sensitivity), arranged in a line with equal spacing <span class="math-tex" data-type="tex">\\(b\\)</span> between antennas:
 
-<img src="interferometer.png"/>
+<img src="images/interferometer.png"/>
 
 **Fig 1:** Geometry of an elementary three-element interfometer. Three antennas (elements) are arranged in a line with a spacing <span class="math-tex" data-type="tex">\\(b\\)</span> between them.
 

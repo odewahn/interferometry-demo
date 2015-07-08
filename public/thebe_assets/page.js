@@ -1,7 +1,7 @@
 var thebe;
 $(function(){
     thebe = new Thebe({
-      url:"http://192.168.59.103:8888/",
+	  url:"https://tmp33.tmpnb.org",
       tmpnb_mode: false,
       append_kernel_controls_to: 'body'
     });
