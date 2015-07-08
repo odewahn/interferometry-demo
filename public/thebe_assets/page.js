@@ -1,8 +1,7 @@
 var thebe;
 $(function(){
     thebe = new Thebe({
-      url:"https://tmp33.tmpnb.org",
-      kernel_name: "python2",
+      url:"http://192.168.59.103:8888/",
       tmpnb_mode: false,
       append_kernel_controls_to: 'body'
     });
