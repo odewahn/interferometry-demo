@@ -1,4 +1,4 @@
-# RUN ME FIRST, please!
+# RUN ME FIRST!
 
 These are some standard libraries you need to import before any of these code examples will work:
 
