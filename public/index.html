@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>RUN ME FIRST!</title>
+    <title>Introduction to Interferometery and Synthesis Imaging</title>
 
+    <link rel="prev" href="README.html">
     
     
 
@@ -16,30 +17,31 @@
 
   </head>
   <body data-type="book">
+    &laquo; <a href="README.html">Sample Notebook</a>
 
     <section data-type="chapter">
-<h1>RUN ME FIRST!</h1>
+<h1>Introduction to Interferometery and Synthesis Imaging</h1>
 
-<p>These are some standard libraries you need to import before any of these code examples will work:</p>
+<p>Sythesis imaging is a method to combine the outputs of multiple radio antennas into a single image, boosting angular resolution and overall sensitivity. It depends upon the outputs of antennas being <em>interfered</em> together in pairs, measuring the amplitude and phase of the interfered signal. The output of each interfered pair gives information about the sky, which can be aggregated to form an image of the sky.</p>
+<p>This notebook gives a quick interactive introduction to radio interferometers and synthesis imaging.</p>
+<section data-type="sect1">
+<h1>Load boilerplate code</h1>
+
+<p>Before jumping into the subject, we need to load some boilerplate libraries we'll use in the code examples below.</p>
 <pre data-code-language="python" data-executable="true" data-type="programlisting">
 %matplotlib inline
-</pre>
-
-<pre data-code-language="python" data-executable="true" data-type="programlisting">
 from IPython.display import Image
 from IPython.html.widgets import interact
 from numpy import pi, cos, sin
 import numpy as np
 import pylab as plt
+import seaborn as sns
+sns.set()
 </pre>
 
+</section>
 <section data-type="sect1">
-<h1>Introduction to Interferometery and Synthesis Imaging</h1>
-
-<p>Sythesis imaging is a method to combine the outputs of multiple radio antennas into a single image, boosting angular resolution and overall sensitivity. It depends upon the outputs of antennas being <em>interfered</em> together in pairs, measuring the amplitude and phase of the interfered signal. The output of each interfered pair gives information about the sky, which can be aggregated to form an image of the sky.</p>
-<p>This notebook gives a quick interactive introduction to radio interferometers and synthesis imaging.</p>
-<section data-type="sect2">
-<h2>A simple interferometer</h2>
+<h1>A simple interferometer</h1>
 
 <p>A radio interferometer computes pair-wise correlations between antennas. For an array of <span class="math-tex" data-type="tex">\(N_ant\)</span> antennas, the number of possible pairs of antennas is given by</p>
 <p><span class="math-tex" data-type="tex">\( N<em>{pairs} = \frac{(N</em>{ant})(N_{ant} - 1)}{2}.\)</span></p>
@@ -54,7 +56,6 @@ import pylab as plt
 <p>where <span class="math-tex" data-type="tex">\(c\)</span> is the speed of light, and <span class="math-tex" data-type="tex">\(\theta\)</span> is the angle of incidence. Given this, the output of the middle cross-multiplier in the diagram is:</p>
 <p><span class="math-tex" data-type="tex">\(F = sin(2\pi\nu t)sin2\pi\nu(t - \tau_g),\)</span></p>
 <p>for which time average of which can be shown to be <span class="math-tex" data-type="tex">\(<f> = cos2\pi\nu t_g\)</f></span>. This is known as the <em>fringe frequency</em>, and can be considered the fundamental measurement from which interferometric synthesis images are created.</p>
-</section>
 <section data-type="sect2">
 <h2>Fringe frequency</h2>
 
@@ -173,10 +174,6 @@ def n_ops(bandwidth, n_ant):
     print to_print
 
 f = interact(n_ops, bandwidth=(1, 1e3), n_ant=(2, 1024))
-</pre>
-
-<pre data-code-language="python" data-executable="true" data-type="programlisting">
-
 </pre>
 </section>
 </section>

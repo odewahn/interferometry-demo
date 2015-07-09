@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Sample Notebook</title>
+
+        <link rel="next" href="index.html">
+
+    
+
+    <link rel="stylesheet" type="text/css" href="thebe_assets/style.css">
+
+    <script src="thebe_assets/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="thebe_assets/main-built.js" type="text/javascript"></script>
+    <script src="thebe_assets/page.js" type="text/javascript"></script>
+
+  </head>
+  <body data-type="book">
+
+    <p>This is a demo for how to use Jupyter Notebooks and related tools (thebe, tmpnb, Docker, etc) to teach radio interferometry in an interactive format.</p>
+<section data-type="chapter">
+<h1>Sample Notebook</h1>
+
+<p>Here is the source notebook, <a href="index.ipynb">Introduction to Interferometery and Synthesis Imaging</a>.  You can edit this using the IPython Notebook system.</p>
+</section>
+<section data-type="chapter">
+<h1>Interactive Web Page</h1>
+
+<p>You can see an interactive version of the notebook at:</p>
+<p><a href="http://odewahn.github.io/interferometry-demo/public/">http://odewahn.github.io/interferometry-demo/public/</a></p>
+<p>This page works by converting the raw ipynb file into static HTML, and then using the <a href="https://github.com/oreillymedia/thebe">thebe</a> plugin to make the code runnable directly in the browser.  (Thebe uses the same JavaScript libraries used in the Jupyter project, but allows you to run the notebook on a different host.) </p>
+<p>It works like this:</p>
+<ul>
+<li>The first time you click "run", thebe starts a Docker container on <a href="tmpnb.org">tmpnb.org</a> that's running a Jupyter server.  (tmpnb.org is generously supported and maintained by Rackspace.)  Each user gets his or her own container.</li>
+<li>When you click the "Run" button, thebe sends your code to the remote Docker container, which executes it and returns the results.</li>
+</ul>
+</section>
+<section data-type="chapter">
+<h1>Share-cell Examples</h1>
+
+<p><a href="https://github.com/rgbkrk/share-cell">share-cell</a> is a nice little tool created by Kyle Kelley (@rgbrkr) from Rackspace.  Kyle is a core Jupyter contributor, and is also the creator of tmpnb.  Basically, it just gives you a simple way to share code samples via links.  Here are a few examples from the notebooks above:</p>
+<ul>
+<li><a href="http://localhost:8000/share-cell/?code=%09%0A%23%20Import%20some%20boilerplate%20libraries%0A%25matplotlib%20inline%0Afrom%20IPython.display%20import%20Image%0Afrom%20IPython.html.widgets%20import%20interact%0Afrom%20numpy%20import%20pi%2C%20cos%2C%20sin%0Aimport%20numpy%20as%20np%0Aimport%20pylab%20as%20plt%0Aimport%20seaborn%20as%20sns%0A%0Adef%20plot_fringe(bl_length%2C%20wavelength%2C%20source_spacing">Fringe frequency</a>%3A%0A%20%20%20%20%22%22%22%20Plot%20the%20fringe%20function%20for%20a%20baseline%20with%202%20sources%20(see%20Fig%201)%0A%0A%20%20%20%20bl_length%3A%20%20%20%20%20%20distance%20between%20antennas%2C%20in%20m%0A%20%20%20%20wavelength%3A%20%20%20%20%20wavelength%2C%20in%20m%0A%20%20%20%20source_spacing%3A%20distance%20between%20sources%2C%20in%20degrees%0A%20%20%20%20%22%22%22%0A%20%20%20%20theta%20%3D%20np.linspace(-np.pi%2C%20np.pi%2C%20401)%0A%20%20%20%20l%20%3D%20sin(theta)%0A%20%20%20%20l_spc%20%3D%20sin(source_spacing%20%2F%2057.3)%0A%0A%20%20%20%20%23%20first%20baseline%0A%20%20%20%20F_src1_bl1%20%3D%20cos(2%20<em>%20pi%20</em>%20bl_length%20<em>%20l%20%2F%20wavelength)%0A%20%20%20%20F_src2_bl1%20%3D%20cos(2%20</em>%20pi%20<em>%20bl_length%20</em>%20(l%20-%20l_spc)%20%2F%20wavelength)%0A%20%20%20%20F_bl1%20%3D%20F_src1_bl1%20%2B%20F_src2_bl1%0A%0A%20%20%20%20%23%20second%20baseline%0A%20%20%20%20F_src1_bl2%20%3D%20cos(2%20<em>%20pi%20</em>%202%20<em>%20bl_length%20</em>%20l%20%2F%20wavelength)%0A%20%20%20%20F_src2_bl2%20%3D%20cos(2%20<em>%20pi%20</em>%202<em>%20bl_length%20</em>%20(l%20-%20l_spc)%20%2F%20wavelength)%0A%20%20%20%20F_bl2%20%3D%20F_src1_bl2%20%2B%20F_src2_bl2%0A%0A%20%20%20%20plt.plot(l%2C%20F_bl1%2C%20c%3D'%23cc0000'%2C%20label%3D%22Baseline%201-2%22)%0A%20%20%20%20plt.plot(l%2C%20F_bl2%2C%20c%3D'%230000cc'%2C%20label%3D%22Baseline%201-3%22)%0A%20%20%20%20plt.xlabel(%22%24sin(%5C%5Ctheta)%24%22)%0A%20%20%20%20plt.ylabel(%22Fringe%20amplitude%22)%0A%20%20%20%20plt.ylim(-2%2C%202)%0A%20%20%20%20plt.legend()%0A%0Af%20%3D%20interact(plot_fringe%2C%20bl_length%3D(1%2C%20100)%2C%20wavelength%3D(1%2C%20100)%2C%20source_spacing%3D(0%2C%2090))%0A%0A&amp;kernel_name=python3)</li>
+<li><a href="http://localhost:8000/share-cell/?code=%09%0A%23%20Import%20some%20boilerplate%20libraries%0A%25matplotlib%20inline%0Afrom%20IPython.display%20import%20Image%0Afrom%20IPython.html.widgets%20import%20interact%0Afrom%20numpy%20import%20pi%2C%20cos%2C%20sin%0Aimport%20numpy%20as%20np%0Aimport%20pylab%20as%20plt%0Aimport%20seaborn%20as%20sns%0A%0Adef%20plot_fringe(bl_length%2C%20wavelength%2C%20source_spacing">Fringe frequency with multiple sources</a>%3A%0A%20%20%20%20%22%22%22%20Plot%20the%20fringe%20function%20for%20a%20baseline%20with%202%20sources%20(see%20Fig%201)%0A%0A%20%20%20%20bl_length%3A%20%20%20%20%20%20distance%20between%20antennas%2C%20in%20m%0A%20%20%20%20wavelength%3A%20%20%20%20%20wavelength%2C%20in%20m%0A%20%20%20%20source_spacing%3A%20distance%20between%20sources%2C%20in%20degrees%0A%20%20%20%20%22%22%22%0A%20%20%20%20theta%20%3D%20np.linspace(-np.pi%2C%20np.pi%2C%20401)%0A%20%20%20%20l%20%3D%20sin(theta)%0A%20%20%20%20l_spc%20%3D%20sin(source_spacing%20%2F%2057.3)%0A%0A%20%20%20%20%23%20first%20baseline%0A%20%20%20%20F_src1_bl1%20%3D%20cos(2%20<em>%20pi%20</em>%20bl_length%20<em>%20l%20%2F%20wavelength)%0A%20%20%20%20F_src2_bl1%20%3D%20cos(2%20</em>%20pi%20<em>%20bl_length%20</em>%20(l%20-%20l_spc)%20%2F%20wavelength)%0A%20%20%20%20F_bl1%20%3D%20F_src1_bl1%20%2B%20F_src2_bl1%0A%0A%20%20%20%20%23%20second%20baseline%0A%20%20%20%20F_src1_bl2%20%3D%20cos(2%20<em>%20pi%20</em>%202%20<em>%20bl_length%20</em>%20l%20%2F%20wavelength)%0A%20%20%20%20F_src2_bl2%20%3D%20cos(2%20<em>%20pi%20</em>%202<em>%20bl_length%20</em>%20(l%20-%20l_spc)%20%2F%20wavelength)%0A%20%20%20%20F_bl2%20%3D%20F_src1_bl2%20%2B%20F_src2_bl2%0A%0A%20%20%20%20plt.plot(l%2C%20F_bl1%2C%20c%3D'%23cc0000'%2C%20label%3D%22Baseline%201-2%22)%0A%20%20%20%20plt.plot(l%2C%20F_bl2%2C%20c%3D'%230000cc'%2C%20label%3D%22Baseline%201-3%22)%0A%20%20%20%20plt.xlabel(%22%24sin(%5C%5Ctheta)%24%22)%0A%20%20%20%20plt.ylabel(%22Fringe%20amplitude%22)%0A%20%20%20%20plt.ylim(-2%2C%202)%0A%20%20%20%20plt.legend()%0A%0Af%20%3D%20interact(plot_fringe%2C%20bl_length%3D(1%2C%20100)%2C%20wavelength%3D(1%2C%20100)%2C%20source_spacing%3D(0%2C%2090))&amp;kernel_name=python3)</li>
+<li>[Correlator computations]</li>
+</ul>
+</section>
+
+    <a href="index.html">Introduction to Interferometery and Synthesis Imaging</a> &raquo;
+  </body>
+</html>

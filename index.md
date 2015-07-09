@@ -1,30 +1,27 @@
-# RUN ME FIRST!
-
-These are some standard libraries you need to import before any of these code examples will work:
-
-<pre data-code-language="python"
-     data-executable="true"
-     data-type="programlisting">
-%matplotlib inline
-</pre>
-
-<pre data-code-language="python"
-     data-executable="true"
-     data-type="programlisting">
-from IPython.display import Image
-from IPython.html.widgets import interact
-from numpy import pi, cos, sin
-import numpy as np
-import pylab as plt
-</pre>
-
-## Introduction to Interferometery and Synthesis Imaging
+# Introduction to Interferometery and Synthesis Imaging
 
 Sythesis imaging is a method to combine the outputs of multiple radio antennas into a single image, boosting angular resolution and overall sensitivity. It depends upon the outputs of antennas being *interfered* together in pairs, measuring the amplitude and phase of the interfered signal. The output of each interfered pair gives information about the sky, which can be aggregated to form an image of the sky.
 
 This notebook gives a quick interactive introduction to radio interferometers and synthesis imaging.
 
-### A simple interferometer
+## Load boilerplate code
+
+Before jumping into the subject, we need to load some boilerplate libraries we'll use in the code examples below.
+
+<pre data-code-language="python"
+     data-executable="true"
+     data-type="programlisting">
+%matplotlib inline
+from IPython.display import Image
+from IPython.html.widgets import interact
+from numpy import pi, cos, sin
+import numpy as np
+import pylab as plt
+import seaborn as sns
+sns.set()
+</pre>
+
+## A simple interferometer
 
 A radio interferometer computes pair-wise correlations between antennas. For an array of <span class="math-tex" data-type="tex">\\(N_ant\\)</span> antennas, the number of possible pairs of antennas is given by
 
@@ -179,10 +176,4 @@ def n_ops(bandwidth, n_ant):
     print to_print
 
 f = interact(n_ops, bandwidth=(1, 1e3), n_ant=(2, 1024))
-</pre>
-
-<pre data-code-language="python"
-     data-executable="true"
-     data-type="programlisting">
-
 </pre>
