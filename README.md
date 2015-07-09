@@ -1,4 +1,4 @@
-This is a demo for how to use Jupyter Notebooks and related tools (thebe, tmpnb, Docker, etc) to teach radio interferometry in an interactive format.
+This is a demo for how to use Jupyter Notebooks and related tools (thebe, tmpnb, Docker, etc) to teach radio interferometry in an interactive format.  The source material is by Lincoln Greenhill and Danny Price, 2015.
 
 # Sample Notebook
 

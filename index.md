@@ -1,5 +1,7 @@
 # Introduction to Interferometery and Synthesis Imaging
 
+<span>&#9400;</span> Lincoln Greenhill and Danny Price, 2015
+
 Sythesis imaging is a method to combine the outputs of multiple radio antennas into a single image, boosting angular resolution and overall sensitivity. It depends upon the outputs of antennas being *interfered* together in pairs, measuring the amplitude and phase of the interfered signal. The output of each interfered pair gives information about the sky, which can be aggregated to form an image of the sky.
 
 This notebook gives a quick interactive introduction to radio interferometers and synthesis imaging.
@@ -29,7 +31,7 @@ A radio interferometer computes pair-wise correlations between antennas. For an 
 
 To give a simple example, imagine an array of three simple isotropic antennas (i.e. uniform sensitivity), arranged in a line with equal spacing <span class="math-tex" data-type="tex">\\(b\\)</span> between antennas:
 
-<img src="images/interferometer.png"/>
+<img src="public/images/interferometer.png"/>
 
 **Fig 1:** Geometry of an elementary three-element interfometer. Three antennas (elements) are arranged in a line with a spacing <span class="math-tex" data-type="tex">\\(b\\)</span> between them.
 
