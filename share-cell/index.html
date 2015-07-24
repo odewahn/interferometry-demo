@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Share cell</title>
+  <link rel="stylesheet" href="thebe.css" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://rawgit.com/oreillymedia/thebe/master/static/main-built.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.js"></script>
+  <script type="text/javascript" src="sharecell.js"></script>
+
+  <style>
+
+    body div.input_area .CodeMirror {
+      height: 300px !important;
+    }
+  </style>
+
+</head>
+<body>
+<pre data-executable='true' id='singlecell'>
+
+# Import some boilerplate libraries
+%matplotlib inline
+from IPython.display import Image
+from IPython.html.widgets import interact
+from numpy import pi, cos, sin
+import numpy as np
+import pylab as plt
+import seaborn as sns
+
+def plot_fringe(bl_length, wavelength, source_spacing):
+    """ Plot the fringe function for a baseline with 2 sources (see Fig 1)
+
+    bl_length:      distance between antennas, in m
+    wavelength:     wavelength, in m
+    source_spacing: distance between sources, in degrees
+    """
+    theta = np.linspace(-np.pi, np.pi, 401)
+    l = sin(theta)
+    l_spc = sin(source_spacing / 57.3)
+
+    # first baseline
+    F_src1_bl1 = cos(2 * pi * bl_length * l / wavelength)
+    F_src2_bl1 = cos(2 * pi * bl_length * (l - l_spc) / wavelength)
+    F_bl1 = F_src1_bl1 + F_src2_bl1
+
+    # second baseline
+    F_src1_bl2 = cos(2 * pi * 2 * bl_length * l / wavelength)
+    F_src2_bl2 = cos(2 * pi * 2* bl_length * (l - l_spc) / wavelength)
+    F_bl2 = F_src1_bl2 + F_src2_bl2
+
+    plt.plot(l, F_bl1, c='#cc0000', label="Baseline 1-2")
+    plt.plot(l, F_bl2, c='#0000cc', label="Baseline 1-3")
+    plt.xlabel("$sin(\\theta)$")
+    plt.ylabel("Fringe amplitude")
+    plt.ylim(-2, 2)
+    plt.legend()
+
+f = interact(plot_fringe, bl_length=(1, 100), wavelength=(1, 100), source_spacing=(0, 90))
+
+</pre>
+
+  <style>
+    .zeroclipboard-is-active {
+      border-style: 'inset';
+      color: white;
+    }
+  </style>
+
+  <div class="share-cell">
+    <div class="thebe_controls">
+      <button id="save">Copy permalink</button>
+    </div>
+
+    <h2>About <a href="https://github.com/rgbkrk/share-cell">Share Cell</a></h2>
+    <p>
+      This runs <a href="http://jupyter.org">Jupyter</a> kernels inside of Docker containers,
+      <a href="https://github.com/jupyter/tmpnb">through a temporary notebook system</a>.
+      The frontend exposed here is <a href="https://github.com/oreillymedia/thebe">O'Reilly Media's Thebe</a>.
+    </p>
+    <p>
+      There is no network access and operations are limited. If you find a bug, <a href="https://github.com/rgbkrk/share-cell/issues">report it</a>.
+    </p>
+    <p>Hosting for the kernels is provided by <a href="https://developer.rackspace.com">developer.rackspace.com</a>.
+  </div>
+
+  <script>
+
+  $( document ).ready(function(){
+
+    var params = getUrlParams();
+    // Inject code on the page
+    var code = params.code || $('#singlecell').text();
+    var kernel_name = params.kernel_name || 'python3';
+    var nburl = 'https://tmp34.tmpnb.org';
+
+    var shareCell = new ShareCell(code, kernel_name, nburl);
+
+    var $save = $('#save');
+    var zclipboard = new ZeroClipboard($save);
+
+    window.zclipboard = zclipboard;
+    zclipboard.on("ready", function(readyEvent){
+      $save.text("Copy permalink");
+    });
+
+    zclipboard.on("aftercopy", function(event) {
+      $save.text("Copied permalink!");
+      window.setTimeout(function(){
+        $save.text("Copy permalink");
+      }, 800);
+    });
+
+    zclipboard.on("copy", function(event) {
+      var params = shareCell.path();
+      // Copying the path before we end up redirecting
+      var clipboard = event.clipboardData;
+      var fullURL = location.protocol + '//' + location.host + location.pathname + params;
+      // This will get better with the use of the History API
+      clipboard.setData("text/plain", fullURL);
+    });
+
+    window.onpopstate = function(event) {
+      shareCell.replaceState(event.state);
+    };
+
+  });
+
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37362544-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
